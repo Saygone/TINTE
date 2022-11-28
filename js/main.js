@@ -25,62 +25,62 @@ function ready() {
     var removeCartButtons = document.getElementsByClassName("cart-remove"); //Объявляем переменную для удаления товаров из корзин - элемент css = cart-remove
     console.log(removeCartButtons) //Выводим в консоль
     for (var i = 0; i < removeCartButtons.length; i++) { // Пока количество крестиков в корзине больше 0 делаем:
-        var button = removeCartButtons[i]; // объявляем переменную кнопка и присваиваем ей значение removeCartButtons
+        var button = removeCartButtons[i]; // объявляем локальную переменную кнопка и присваиваем ей значение removeCartButtons
         button.addEventListener("click", removeCartItem); //Добавляем обработчик событий чтобы при нажатии срабатывала функция removeCartItem
     }
     // Изменение количества
     var quantityInputs = document.getElementsByClassName("cart-quantity") //Объявляем переменную для количества - элемент css = cart-quantity
     for (var i = 0; i < quantityInputs.length; i++) { // Пока количество товаров больше 0 делаем:
-        var input = quantityInputs[i]; //Добавляем переменную input и присваиваем i элемент quantityInputs
+        var input = quantityInputs[i]; //Добавляем локальную переменную input и присваиваем ей значение i элемента quantityInputs
         input.addEventListener("change", quantityChanged); //Добавляем обработчик событий чтобы при смене значений вызвалась функция quantityChanged
     }
     // Добавление товара в корзину
-    var addCart = document.getElementsByClassName("add-cart")
-    for (var i = 0; i < addCart.length; i++) {
-        var button = addCart[i]
-        button.addEventListener("click", addCartClicked)
+    var addCart = document.getElementsByClassName("add-cart") //Объявляем переменную для добавления товара в корзину - элемент css = add-cart
+    for (var i = 0; i < addCart.length; i++) { //Пока количество элементов addCart больше 0 делаем
+        var button = addCart[i] // Добавляем локальную переменную button и присваиваем ей значение i элемента addCart
+        button.addEventListener("click", addCartClicked) //Добавляем обработчик событий чтобы при нажатии срабатывала функция addCartClicked
     }
     // Кнопка купить
-    document.getElementsByClassName("btn-buy")[0].addEventListener("click", buyButtonClicked);
+    document.getElementsByClassName("btn-buy")[0].addEventListener("click", buyButtonClicked);// Из документа извлекаем элемент с ClassName btn-buy и добавляем ему обработчик событий чтобы при нажатии срабатывала функция ByuButtonClicked
 }
 // Кнопка купить
 function buyButtonClicked() {
-    alert('Заказ принят')
-    var cartContent = document.getElementsByClassName("cart-content")[0]
-    while (cartContent.hasChildNodes()) {
-        cartContent.removeChild(cartContent.firstChild);
+    alert('Заказ принят') //Вывод alert с текстом Заказ принят
+    var cartContent = document.getElementsByClassName("cart-content")[0] // Добавляем локальную переменную cartContent и присваиваем ему значение первого элемента с ClassName cart-content
+    while (cartContent.hasChildNodes()) { //Пока cartContent имеет наследуемые узлы
+        cartContent.removeChild(cartContent.firstChild); //удаляем в cartContent наследуемые узлы
     }
-    updatetotal();
+    updatetotal(); //Вызывем фунцию для обновления итоговой суммы
 }
 
 //Удалить товары из корзины
-function removeCartItem(event) {
-    var buttonClicked = event.target;
-    buttonClicked.parentElement.remove();
-    updatetotal();
+function removeCartItem(event) { //Добавляем класс событие к функции
+    var buttonClicked = event.target; //Локлаьная перемаенная buttonClicked = элемент на котором сработало событие
+    buttonClicked.parentElement.remove(); //Элемент на котором сработало событие удален
+    updatetotal(); //Вызывем фунцию для обновления итоговой суммы
 }
 //Изменение количества
-function quantityChanged(event) {
-    var input = event.target
-    if (isNaN(input.value) || input.value <= 0) {
-        input.value = 1
+function quantityChanged(event) { //Добавляем класс событие к функции
+    var input = event.target //Локальная переменная input = элемент на котором сработало событие
+    if (isNaN(input.value) || input.value <= 0) { //если значение input недоступно или меньше либо равно нулю то
+        input.value = 1 // Присваиваем input значение 1
     }
-    updatetotal();
+    updatetotal(); //Вызывем фунцию для обновления итоговой суммы
 }
 //Добавить в корзину
-function addCartClicked(event) {
-    var button = event.target;
-    var shopProducts = button.parentElement;
-    var title = shopProducts.getElementsByClassName("product-title")[0].innerText;
-    var price = shopProducts.getElementsByClassName("price")[0].innerText;
-    var productImg = shopProducts.getElementsByClassName("product-img")[0].src;
-    addProductToCart(title, price, productImg);
-    updatetotal();
+function addCartClicked(event) { //Добавляем класс событие к функции
+    var button = event.target; //Локальная переменная button = элемент на котором сработало событие
+    var shopProducts = button.parentElement; //Локальная переменная shopProducts = родительский элемент переменной button
+    var title = shopProducts.getElementsByClassName("product-title")[0].innerText; //Локальная переменная title = первый элемент с именем класса product-title, считываем его текст
+    var price = shopProducts.getElementsByClassName("price")[0].innerText; //Локальная переменная price = первый элемент с именем класса price, считываем его текст
+    var productImg = shopProducts.getElementsByClassName("product-img")[0].src; //Локальная переменная productImg = первый элемент с именем класса product-img, из источника
+    addProductToCart(title, price, productImg); //Вызываем функцию для добавление товаров в корзину и передаем в неё title price productImg
+    updatetotal(); //Вызывем фунцию для обновления итоговой суммы
 }
 
-function addProductToCart(title, price, productImg) {
-    var cartShopBox = document.createElement("div");
-    cartShopBox.classList.add("cart-box");
+function addProductToCart(title, price, productImg) { //Функция для добавления товара в корзину принимаемые элементы title price productImg
+    var cartShopBox = document.createElement("div"); //Локальная переменная cartShopBox = в документе создается элемент класса div
+    cartShopBox.classList.add("cart-box"); //в локальной переменной cartShopBox добавляем classList cart-box
     var cartItems = document.getElementsByClassName("cart-content")[0];
     var cartItemsNames = cartItems.getElementsByClassName("cart-product-title");
     for (var i = 0; i < cartItemsNames.length; i++) {
