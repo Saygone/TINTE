@@ -1,5 +1,5 @@
 // Корзина
-let cartIcon = document.querySelector("#cart-icon")
+let cartIcon = document.querySelector("#cart-icon") //Test
 let cart = document.querySelector(".cart")
 let closeCart = document.querySelector("#close-cart")
 //Открыть корзину
