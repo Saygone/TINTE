@@ -39,6 +39,7 @@ function ready() {
     for (var i = 0; i < addCart.length; i++) { //Пока количество элементов addCart больше i делаем
         var button = addCart[i] // Добавляем локальную переменную button и присваиваем ей значение i элемента addCart
         button.addEventListener("click", addCartClicked) //Добавляем обработчик событий чтобы при нажатии срабатывала функция addCartClicked
+        alert()
     }
     // Кнопка купить
     document.getElementsByClassName("btn-buy")[0].addEventListener("click", buyButtonClicked);// Из документа извлекаем элемент с ClassName btn-buy и добавляем ему обработчик событий чтобы при нажатии срабатывала функция ByuButtonClicked
@@ -83,7 +84,7 @@ function addProductToCart(title, price, productImg) { //Функция для д
     cartShopBox.classList.add("cart-box"); //в локальной переменной cartShopBox добавляем classList cart-box
     var cartItems = document.getElementsByClassName("cart-content")[0]; //Локальная переменная cartItems = получаем первое значение из документа с ClassName cart-content
     var cartItemsNames = cartItems.getElementsByClassName("cart-product-title"); //Локальная переменная cartItemsNames = получаем элемент с ClassName cart-product-title
-    for (var i = 0; i < cartItemsNames.length; i++) { 
+    for (var i = 0; i < cartItemsNames.length; i++) {
         if (cartItemsNames[i].innerText == title) {
             alert("You have already add this item to cart");
             return;
