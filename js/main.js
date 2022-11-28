@@ -1,38 +1,38 @@
 // Корзина
-let cartIcon = document.querySelector("#cart-icon") //Test
-let cart = document.querySelector(".cart")
-let closeCart = document.querySelector("#close-cart")
+let cartIcon = document.querySelector("#cart-icon") //Объявляем переменную которая в css является иконкой корзины
+let cart = document.querySelector(".cart") //Объявляем переменную которая в css является корзиной
+let closeCart = document.querySelector("#close-cart") //Объявляем переменную которая в css является крестиком для закрытия корзины
 //Открыть корзину
-cartIcon.onclick = () => {
-    cart.classList.add("active")
+cartIcon.onclick = () => { //При нажатии на иконку корзины...
+    cart.classList.add("active") //...добавляем корзине свойство Активная
 };
 //Закрыть корзину
-closeCart.onclick = () => {
-    cart.classList.remove("active")
+closeCart.onclick = () => { //При нажатии на крестик в корзине...
+    cart.classList.remove("active") //...удаляем у корзины свойство Активная
 };
 
 
 // Работа корзины JS
-if (document.readyState == "loading") {
-    document.addEventListener("DOMContentLoaded", ready);
-} else {
-    ready();
+if (document.readyState == "loading") { //Если состояние загрузки файла загружается...
+    document.addEventListener("DOMContentLoaded", ready); //...Добавляем обработчик событий когда html документ полностью пропарсен и готов к использованию запускаем функцию ready
+} else { // Или
+    ready(); //...Просто запускаем функцию готово
 }
 
-//Функция
+//Функция готово
 function ready() {
     //Удалить товары из корзины
-    var removeCartButtons = document.getElementsByClassName("cart-remove");
-    console.log(removeCartButtons)
-    for (var i = 0; i < removeCartButtons.length; i++) {
-        var button = removeCartButtons[i];
-        button.addEventListener("click", removeCartItem);
+    var removeCartButtons = document.getElementsByClassName("cart-remove"); //Объявляем переменную для удаления товаров из корзин - элемент css = cart-remove
+    console.log(removeCartButtons) //Выводим в консоль
+    for (var i = 0; i < removeCartButtons.length; i++) { // Пока количество крестиков в корзине больше 0 делаем:
+        var button = removeCartButtons[i]; // объявляем переменную кнопка и присваиваем ей значение removeCartButtons
+        button.addEventListener("click", removeCartItem); //Добавляем обработчик событий чтобы при нажатии срабатывала функция removeCartItem
     }
     // Изменение количества
-    var quantityInputs = document.getElementsByClassName("cart-quantity")
-    for (var i = 0; i < quantityInputs.length; i++) {
-        var input = quantityInputs[i];
-        input.addEventListener("change", quantityChanged);
+    var quantityInputs = document.getElementsByClassName("cart-quantity") //Объявляем переменную для количества - элемент css = cart-quantity
+    for (var i = 0; i < quantityInputs.length; i++) { // Пока количество товаров больше 0 делаем:
+        var input = quantityInputs[i]; //Добавляем переменную input и присваиваем i элемент quantityInputs
+        input.addEventListener("change", quantityChanged); //Добавляем обработчик событий чтобы при смене значений вызвалась функция quantityChanged
     }
     // Добавление товара в корзину
     var addCart = document.getElementsByClassName("add-cart")
